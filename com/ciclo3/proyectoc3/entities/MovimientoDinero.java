@@ -1,4 +1,4 @@
-package com.ciclo3.proyectoc3.Modelo;
+package com.ciclo3.proyectoc3.entities;
 
 public class MovimientoDinero {
     //ATRIBUTOS
