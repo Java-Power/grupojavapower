@@ -1,31 +1,59 @@
 package com.ciclo3.proyectoc3.services;
 
+import com.ciclo3.proyectoc3.entities.Empleado;
+import com.ciclo3.proyectoc3.entities.Empresa;
+import com.ciclo3.proyectoc3.repositories.EmpleadoRepository;
+import com.ciclo3.proyectoc3.repositories.EmpresaRepository;
+import org.springframework.stereotype.Service;
+
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
 public class ServicioEmpresa {
 
-    public ServicioEmpresa() {
-        super();
+    private EmpresaRepository enterpriseRepository;
+
+    public ServicioEmpresa(EmpresaRepository enterpriseRepository) {
+        this.enterpriseRepository = enterpriseRepository;
     }
 
-    public void registrarEmpresa(String nombre, String direccion, String telefono, String correo, String contrasena) {
-
+    public List<Empresa> getEnterprises() {
+        return this.enterpriseRepository.findAll();
     }
 
-    public void modificarEmpresa(String nombre, String direccion, String telefono, String correo, String contrasena) {
-
+    public Empresa getEnterprise(long id){
+        Optional<Empresa> enterprise = this.enterpriseRepository.findById(id);
+        return enterprise.orElse(null);
     }
 
-    public void eliminarEmpresa(String nombre, String direccion, String telefono, String correo, String contrasena) {
-
+    public Empresa createEnterprise( Empresa enterprise){
+        return this.enterpriseRepository.save(enterprise);
     }
 
-    public void buscarEmpresa(String nombre, String direccion, String telefono, String correo, String contrasena) {
+    public Empresa updateEnterprise(long id, Empresa enterprise){
+        Optional<Empresa> dbData = this.enterpriseRepository.findById(id);
 
+        if(dbData.isPresent()){
+            Empresa e = dbData.get();
+            e.setNombre(enterprise.getNombre());
+            e.setDireccion(enterprise.getDireccion());
+            e.setNIT(enterprise.getNIT());
+            e.setTelefono(enterprise.getTelefono());
+
+            this.enterpriseRepository.save(e);
+            return e;
+        }
+        return null;
     }
 
-    public void listarEmpresa() {
-
-        // logica de negocios
+    public Boolean deleteEnterprise(long id){
+        try{
+            this.enterpriseRepository.deleteById(id);
+            return true;
+        }catch (Exception e) {
+            return false;
+        }
     }
-
-
 }
