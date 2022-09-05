@@ -6,4 +6,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/enterprises/[id]/movements")
 public class MovimientoDineroController {
+
 }

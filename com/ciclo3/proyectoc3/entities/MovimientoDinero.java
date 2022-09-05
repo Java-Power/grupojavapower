@@ -8,6 +8,7 @@ public class MovimientoDinero {
     //ATRIBUTOS
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+
     @Column(name = "movimientoDinero_id")
     private long id;
     @Column(name = "monto")
