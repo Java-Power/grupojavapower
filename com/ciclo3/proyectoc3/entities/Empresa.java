@@ -15,8 +15,7 @@ public class Empresa {
         this.NIT = NIT;
     }
 
-    //GETTERS AND SETTRES
-
+    //GETTERS AND SETTERS
 
     public String getNombre() {
         return nombre;

@@ -7,15 +7,13 @@ public class MovimientoDinero {
     private String usuario;
 
     //CONSTRUCTOR
-
-
     public MovimientoDinero(Float monto, String concepto, String usuario) {
         this.monto = monto;
         this.concepto = concepto;
         this.usuario = usuario;
     }
-    //GETTERS AND SETTERS
 
+    //GETTERS AND SETTERS
     public Float getMonto() {
         return monto;
     }
