@@ -1,10 +1,34 @@
 package com.ciclo3.proyectoc3.entities;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@Table(name = "empleado")
 public class Empleado {
+    //ATRIBUTOS
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "empleado_id")
+    private long id;
+    @Column(name = "nombre")
     private String nombre;
+    @Column(name = "correo")
     private String correo;
+    @Column(name = "empresa")
     private String empresa;
+    @Column(name = "rol")
     private String rol;
+
+
+    //Relacion de un empelado solo puede tener una empresa
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Empresa.class)
+    @JoinColumn(name = "empresa_id")
+    private Empresa empresas;
+
+    //Relacion de un empleado puede tener muchos movimientos de dinero
+    @OneToMany(mappedBy = "empleado", cascade = CascadeType.ALL)
+    private List<MovimientoDinero> movimientoDineros;
 
     //CONSTRUCTOR
 
