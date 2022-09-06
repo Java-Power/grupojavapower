@@ -2,11 +2,13 @@ package com.ciclo3.proyectoc3.controllers;
 
 import com.ciclo3.proyectoc3.entities.Empresa;
 import com.ciclo3.proyectoc3.services.ServicioEmpresa;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 public class EmpresaController {
+    @Autowired
     ServicioEmpresa service;
 
     public EmpresaController(ServicioEmpresa services) {
