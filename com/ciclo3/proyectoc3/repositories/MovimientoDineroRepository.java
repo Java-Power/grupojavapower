@@ -9,8 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public interface MovimientoDineroRepository extends JpaRepository<MovimientoDinero, Long> {
+public interface MovimientoDineroRepository extends JpaRepository<MovimientoDinero, Integer> {
     @Query(value = "select * from movimientoDinero where empresa_id=?1", nativeQuery = true)
-    public abstract List<MovimientoDinero> FiltrarMovEmpresa(long id);
+    public abstract List<MovimientoDinero> FiltrarMovEmpresa(Integer id);
+
+    @Query(value = "select * from movimientoDinero where empleado_id=?1", nativeQuery = true)
+    public abstract ArrayList<MovimientoDinero> findByEmpleado(Integer id);
+
+    //Metodo para filtrar movimientos de dinero por empresa
+    @Query(value = "select * from movimientoDinero where empleado_id in (select id from empleado where empresa_id=?1", nativeQuery = true)
+    public abstract ArrayList<MovimientoDinero> findByEmpresa(Integer id);
+
+
 
 }
